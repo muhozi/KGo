@@ -1,25 +1,17 @@
 import {StyleSheet} from 'react-native';
 import colors from './Colors';
 const Styles = StyleSheet.create({
-  container:{
-    // paddingBottom: 0,
-    // backgroundColor: '#fff',
-    // flex: 1
-    flex:1,
-    paddingBottom:100,
-    justifyContent:'center',
-    alignItems:'center',
-    backgroundColor:'#4d4d4d',
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
   },
   logo: {
     marginBottom: 20,
   },
   drawerContainer: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // backgroundColor: '#F5FCFF',
-    // borderWidth: 0,
     backgroundColor: 'rgba(18, 41, 72, 1)',
   },
   title: {
@@ -51,7 +43,7 @@ const Styles = StyleSheet.create({
   },
   btnBlock:{
     backgroundColor:colors.primary,
-    height:50,alignItems:'center',
+    height:50,
     justifyContent:'center',
     marginTop:20,
     margin:8,
@@ -68,10 +60,7 @@ const Styles = StyleSheet.create({
     justifyContent:'center',
   },
   menu:{
-    //flex:1,
     height: 40,
-    // paddingBottom:10,
-    // paddingTop:10,
     paddingLeft:0,
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: '#ddd',
@@ -88,8 +77,6 @@ const Styles = StyleSheet.create({
     flex:1,
     flexDirection:'column',
     height: 60,
-    // paddingBottom:10,
-    // paddingTop:10,
     justifyContent:'center',
     marginLeft: 15,
   },
@@ -107,8 +94,6 @@ const Styles = StyleSheet.create({
   },
   navbar:{
     alignItems:'center',
-    // borderBottomWidth:StyleSheet.hairlineWidth,
-    // borderBottomColor: colors.primaryLight,
     backgroundColor:'rgb(233, 233, 233)',
     flexDirection:'row',
   },

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import FBSDK from 'react-native-fbsdk';
-import { styles } from '../styles';
 
 const { LoginButton } = FBSDK;
 
-class Home extends Component {
+class Join extends Component {
   constructor(props) {
     super(props);
   }
@@ -15,24 +14,28 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar />
+        <StatusBar hidden={true} />
+        <Image
+          source={require('../assets/images/icon.png')}
+          style={{ width: 150, height: 150, marginBottom: 80 }}
+        />
         <View style={styles.logo}>
           <LoginButton
             publishPermissions={['publish_actions']}
             onLoginFinished={(error, result) => {
               if (error) {
-                alert('Login failed with error: ' + result.error);
+                this.setState({ message: 'Something went wrong' });
               } else if (result.isCancelled) {
-                alert('Login was cancelled');
+                this.setState({ message: 'Login cancelled' });
               } else {
-                alert('Login was successful with permissions: ' + result.grantedPermissions);
+                Actions.app({ type: 'reset' });
               }
             }}
-            onLogoutFinished={() => Actions.join({ type: 'reset' })}
+            onLogoutFinished={() => alert('User logged out')}
           />
         </View>
         <View style={{ position: 'absolute', bottom: 30 }}>
-          <Text style={{ fontSize: 10, color: 'rgba(18, 41, 72, 0.8)' }}>KGo</Text>
+          <Text style={{ fontSize: 13, color: '#c9c9c9' }}>Kigali Go</Text>
         </View>
       </View>
     );
@@ -47,4 +50,13 @@ function mapDispatchToProps(dispatch) {
   return {};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#b85454',
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Join);
