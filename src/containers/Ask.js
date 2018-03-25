@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const { LoginButton, GraphRequest, GraphRequestManager } = FBSDK;
 
-class Profile extends Component {
+class Ask extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,20 +37,17 @@ class Profile extends Component {
         <StatusBar />
         {this.state.user ? (
           <View style={{alignItems:'center'}}>
-            <Image
-              source={{uri:this.state.picture}}
-              style={{ width: 150, height: 150,borderRadius:75}}
-            />
             <Text>
-              {this.state.user.name}
-              {'\n\n'}
+              Hey {this.state.user.name}
+            </Text>
+            <Text>
+              We implement this soon with ♥{'\n\n'}
+            </Text>
+            <Text>
+              Sorry ☻!
             </Text>
           </View>
         ) : null}
-        <LoginButton
-          publishPermissions={['publish_actions']}
-          onLogoutFinished={() => Actions.join({ type: 'reset' })}
-        />
       </View>
     );
   }
@@ -76,4 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Ask);

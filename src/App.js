@@ -8,7 +8,8 @@ import { connect, Provider } from 'react-redux';
 import Splash from './containers/Splash';
 import Home from './containers/Home';
 import Join from './containers/Join';
-import Destinations from './containers/Destinations';
+import Ask from './containers/Ask';
+import Profile from './containers/Profile';
 import ConfigureStore from './libs/ConfigureStore';
 import { TabIcon, Navbar, HomeNavbar } from './components';
 
@@ -47,12 +48,12 @@ export default class App extends Component {
                 />
                 <Scene
                   key="chat"
-                  component={Home}
+                  component={Ask}
                   title="Ask"
                   icon={TabIcon}
                   iconImg="ios-chatboxes-outline"
-                  hideNavBar={true}
-                  navBar={HomeNavbar}
+                  hideNavBar={false}
+                  navBar={Navbar}
                 />
                 <Scene
                   key="work"
