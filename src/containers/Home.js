@@ -1,39 +1,73 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View, StatusBar } from 'react-native';
+import {View, StatusBar, Text, TextInput} from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import Icon from 'react-native-vector-icons/Ionicons';
+import MapView,{Polyline} from 'react-native-maps';
 import FBSDK from 'react-native-fbsdk';
 import { styles } from '../styles';
 
-const { LoginButton } = FBSDK;
+const BottomMenu = (props) => (
+  <View style={styles.bigMenuBar}>
+    <View style={{flex:1}}>
+      <Text style={{color:'#fff'}}>{props.title}</Text>
+    </View>
+  </View>
+);
 
 class Home extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      fromLocation:'',
+      toLocation:'',
+    }
   }
   componentDidMount() {}
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.mapContainer}>
         <StatusBar />
-        <View style={styles.logo}>
-          <LoginButton
-            publishPermissions={['publish_actions']}
-            onLoginFinished={(error, result) => {
-              if (error) {
-                alert('Login failed with error: ' + result.error);
-              } else if (result.isCancelled) {
-                alert('Login was cancelled');
-              } else {
-                alert('Login was successful with permissions: ' + result.grantedPermissions);
-              }
+          <View style={styles.searchBar}>
+            <View style={styles.topSearchBarIcon}>
+              <Icon name="ios-pin-outline" size={28}/>
+            </View>
+            <View style={styles.topSearchInputContainer}>
+              <TextInput
+                style={{borderColor: 'gray', flex:8,}}
+                onChangeText={(fromLocation) => this.setState({fromLocation})}
+                placeholder="From ..."
+                value={this.state.fromLocation}
+              />
+            </View>
+          </View>
+          <View style={styles.searchBar2}>
+            <View style={styles.topSearchBarIcon}>
+              <Icon name="ios-remove-circle-outline" size={28}/>
+            </View>
+            <View style={styles.topSearchInputContainer}>
+              <TextInput
+                style={{borderColor: 'gray', flex:8,}}
+                onChangeText={(toLocation) => this.setState({toLocation})}
+                placeholder="To ..."
+                value={this.state.toLocation}
+              />
+            </View>
+          </View>
+          <View style={styles.bottomBigMenus}>
+            <BottomMenu title="Bus stops"/>
+            <BottomMenu title="Lines"/>
+            <BottomMenu title="Journeys"/>
+          </View>
+          <MapView
+            style={styles.homeMap}
+            initialRegion={{
+              latitude: parseFloat(-1.935114),
+              longitude: parseFloat(30.082111),
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
             }}
-            onLogoutFinished={() => Actions.join({ type: 'reset' })}
           />
-        </View>
-        <View style={{ position: 'absolute', bottom: 30 }}>
-          <Text style={{ fontSize: 10, color: 'rgba(18, 41, 72, 0.8)' }}>KGo</Text>
-        </View>
       </View>
     );
   }

@@ -4,10 +4,11 @@ import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FBSDK from 'react-native-fbsdk';
+import axios from 'axios';
 
 const { LoginButton } = FBSDK;
 
-class Destinations extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
   }
@@ -23,21 +24,20 @@ class Destinations extends Component {
           <Text style={{ fontSize: 10, color: 'rgba(18, 41, 72, 0.8)' }}>KGo</Text>
         </View>
         <LoginButton
-          publishPermissions={["publish_actions"]}
-          onLogoutFinished={() => Actions.join({type:'reset'})}/>
+          publishPermissions={['publish_actions']}
+          onLogoutFinished={() => Actions.join({ type: 'reset' })}
+        />
       </View>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return {
-  };
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-  };
+  return {};
 }
 
 const styles = StyleSheet.create({
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Destinations);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

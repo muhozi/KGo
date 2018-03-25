@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Router, Scene, Modal, Tabs } from 'react-native-router-flux';
+import {
+  setCustomTextInput,
+} from 'react-native-global-props';
 import { connect, Provider } from 'react-redux';
 import Splash from './containers/Splash';
 import Home from './containers/Home';
 import Join from './containers/Join';
 import Destinations from './containers/Destinations';
 import ConfigureStore from './libs/ConfigureStore';
-import { TabIcon, Navbar } from './components';
+import { TabIcon, Navbar, HomeNavbar } from './components';
+
 const RouterWithRedux = connect()(Router);
 const store = ConfigureStore();
+const customTextInputProps = {
+  underlineColorAndroid: 'rgba(0,0,0,0)',
+};
+setCustomTextInput(customTextInputProps);
 export default class App extends Component {
   render() {
     return (
@@ -33,16 +41,25 @@ export default class App extends Component {
                   component={Home}
                   title="Home"
                   icon={TabIcon}
-                  iconImg="ios-paper"
-                  hideNavBar={false}
-                  navBar={Navbar}
+                  iconImg="ios-home-outline"
+                  hideNavBar={true}
+                  navBar={HomeNavbar}
                 />
                 <Scene
-                  key="destinations"
-                  component={Destinations}
-                  title="Destinations"
+                  key="chat"
+                  component={Home}
+                  title="Ask"
                   icon={TabIcon}
-                  iconImg="ios-paper"
+                  iconImg="ios-chatboxes-outline"
+                  hideNavBar={true}
+                  navBar={HomeNavbar}
+                />
+                <Scene
+                  key="work"
+                  component={Profile}
+                  title="My profile"
+                  icon={TabIcon}
+                  iconImg="ios-person"
                   navBar={Navbar}
                 />
               </Tabs>
