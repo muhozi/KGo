@@ -6,3 +6,4 @@ Public transport location-aware application for Kigalians! An android applicatio
 
 > From **Kigali CONNECT Hackathon**, One of CONNECT Series of Hackathons in five cities across Africa by K-Go team.  
 
+![](./WMTPApiHackathon.png)
